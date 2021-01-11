@@ -10,9 +10,41 @@ function writePassword() {
 }
 
 function generatePassword() {
+  var specialChars = ["~","!","#","$","%","^","&","*","(",")","_","-","+","=","`","<",",",">",".","?","/","{","}","[","]","|"];
+
+  var lowercaseChars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+  var myPassword = ""
+
   var pwlength = parseInt(prompt('How many chars?'));
-  console.log(typeof pwlength);
-  console.log();
+
+  if (pwlength < 8 || pwlength > 128 || isNaN(pwlength)) {
+    alert("Please choose a number between 8 and 128.");
+    pwlength = parseInt(prompt('How many chars?'));
+  }
+
+  var pwLowercase = confirm("Include lowercase characters?");
+
+  if (pwLowercase === true) {
+    myPassword
+  }
+
+  var pwUppercase = confirm("Include uppercase characters?");
+  var pwNumeric = confirm("Include numbers?");
+  var pwSpecial = confirm("Include special characters?");
+
+  if (pwLowercase === false && pwUppercase === false && pwNumeric === false && pwSpecial === false) {
+    alert("Please choose at least character type.");
+    return generatePassword();
+  }
+
+  for (var i = 0; i < pwlength; i++) {
+    var randomIndex = Math.floor(Math.random() * specialChars.length);
+    var randomChar = specialChars[randomIndex];
+    myPassword = myPassword + randomChar;
+  }
+
+  return myPassword;
 }
 
 // Add event listener to generate button
