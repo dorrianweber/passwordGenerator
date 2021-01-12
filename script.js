@@ -39,6 +39,7 @@ function generatePassword() {
   var pwUppercase = confirm("Include uppercase characters?");
   var pwNumeric = confirm("Include numbers?");
   var pwSpecial = confirm("Include special characters?");
+  var typeCount = 0
 
   // Makes user go back if they don't select any of the 4 character types
 
@@ -47,39 +48,37 @@ function generatePassword() {
     return generatePassword();
   }
 
-  // For-loop to choose random lowercase characters to add to the password
+  // For-loop to choose random characters of each type to add to the password
   
   if (pwLowercase === true) {
+    typeCount ++;
     for (var i = 0; i < pwlength; i++) {
       var randomIndex = Math.floor(Math.random() * lowercaseChars.length);
       var randomLowercase = lowercaseChars[randomIndex];
       myPassword = myPassword + randomLowercase;
     }
   }
-
-  // For-loop to choose random uppercase characters to add to the password
   
   if (pwUppercase === true) {
+    typeCount ++;
     for (var i = 0; i < pwlength; i++) {
       var randomIndex = Math.floor(Math.random() * uppercaseChars.length);
       var randomUppercase = uppercaseChars[randomIndex];
       myPassword = myPassword + randomUppercase;
     }
   }
-
-  // For-loop to choose random numeric characters to add to the password
   
   if (pwNumeric === true) {
+    typeCount ++;
     for (var i = 0; i < pwlength; i++) {
       var randomIndex = Math.floor(Math.random() * numericChars.length);
       var randomNumeric = numericChars[randomIndex];
       myPassword = myPassword + randomNumeric;
     }
   }
-
-  // For-loop to choose random special characters to add to the password
   
   if (pwSpecial === true) {
+    typeCount ++;
     for (var i = 0; i < pwlength; i++) {
       var randomIndex = Math.floor(Math.random() * specialChars.length);
       var randomSpecial = specialChars[randomIndex];
@@ -87,27 +86,9 @@ function generatePassword() {
     }
   }
 
-  // Attempting to set a limit on how many characters of each type the final password will contain
+  console.log(typeCount)
 
-  var typeCount = 0
-
-  if (pwLowercase === true) {
-    typeCount ++
-  }
-
-  if (pwUppercase === true) {
-    typeCount ++
-  }
-
-  if (pwNumeric === true) {
-    typeCount ++
-  }
-
-  if (pwSpecial === true) {
-    typeCount ++
-  }
-
-   console.log (typeCount)
+  // Creating a variable for how many types of characters the user has selected to use in their password
 
   if (pwLowercase === true) {
     var lowerCount = pwlength / typeCount
