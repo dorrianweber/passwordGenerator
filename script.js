@@ -16,11 +16,8 @@ function generatePassword() {
   // Arrays for different sets of characters
 
   var lowercaseChars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-
   var uppercaseChars = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-
   var numericChars = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
-
   var specialChars = ["~","!","#","$","%","^","&","*","(",")","_","-","+","=","`","<",",",">",".","?","/","{","}","[","]","|"];
 
   // -----------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -41,11 +38,6 @@ function generatePassword() {
   // Prompts user to decide whether or not to include different character types
 
   var pwLowercase = confirm("Include lowercase characters?");
-
-  // if (pwLowercase === true) {
-  //   myPassword = myPassword + randomLowercase
-  // }
-
   var pwUppercase = confirm("Include uppercase characters?");
   var pwNumeric = confirm("Include numbers?");
   var pwSpecial = confirm("Include special characters?");
@@ -57,20 +49,44 @@ function generatePassword() {
     return generatePassword();
   }
 
-  // For-loop to choose random special characters to add to the password
-
-  for (var i = 0; i < pwlength; i++) {
-    var randomIndex = Math.floor(Math.random() * specialChars.length);
-    var randomSpecial = specialChars[randomIndex];
-    myPassword = myPassword + randomSpecial;
+  // For-loop to choose random lowercase characters to add to the password
+  
+  if (pwLowercase === true) {
+    for (var i = 0; i < pwlength; i++) {
+      var randomIndex = Math.floor(Math.random() * lowercaseChars.length);
+      var randomLowercase = lowercaseChars[randomIndex];
+      myPassword = myPassword + randomLowercase;
+    }
   }
 
-  // for (var i = 0; i < pwlength; i++) {
-  //   var randomIndex = Math.floor(Math.random() * lowercaseChar.length);
-  //   var randomLowercase = lowercaseChars[randomIndex];
-  //   myPassword = myPassword + randomLowercase;
-  // }
+  // For-loop to choose random uppercase characters to add to the password
+  
+  if (pwUppercase === true) {
+    for (var i = 0; i < pwlength; i++) {
+      var randomIndex = Math.floor(Math.random() * uppercaseChars.length);
+      var randomUppercase = uppercaseChars[randomIndex];
+      myPassword = myPassword + randomUppercase;
+    }
+  }
 
+  // For-loop to choose random numeric characters to add to the password
+  
+  if (pwNumeric === true) {
+    for (var i = 0; i < pwlength; i++) {
+      var randomIndex = Math.floor(Math.random() * numericChars.length);
+      var randomNumeric = numericChars[randomIndex];
+      myPassword = myPassword + randomNumeric;
+    }
+  }
+
+  // For-loop to choose random special characters to add to the password
+  if (pwNumeric === true) {
+    for (var i = 0; i < pwlength; i++) {
+      var randomIndex = Math.floor(Math.random() * specialChars.length);
+      var randomSpecial = specialChars[randomIndex];
+      myPassword = myPassword + randomSpecial;
+    }
+  }
 // Returns value of "myPassword" so it can be fed into "writePassword" function
 
   return myPassword;
