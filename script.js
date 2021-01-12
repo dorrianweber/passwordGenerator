@@ -104,6 +104,7 @@ function generatePassword() {
   }
   
 // Defines "shortenPassword" function
+
   function shortenPassword() {
     originalPassword = myPassword;
     shortenedPassword = originalPassword.slice((myPassword.length - pwLength));
@@ -115,7 +116,13 @@ function generatePassword() {
     shortenPassword();
     myPassword = shortenedPassword;
   }
-    
+
+// Jumbles up the characters in the password
+
+  var jumbledPassword = myPassword.split('').sort(function(){return 0.5-Math.random()}).join('');
+
+  myPassword = jumbledPassword;
+
 // Returns value of "myPassword" so it can be fed into "writePassword" function
 
   return myPassword;
