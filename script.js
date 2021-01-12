@@ -26,11 +26,11 @@ function generatePassword() {
 
   // Prompts user to choose length of password; re-prompts them if they choose too few or too many characters
 
-  var pwlength = parseInt(prompt('How many chars?'));
+  var pwLength = parseInt(prompt('How many chars?'));
 
-  if (pwlength < 8 || pwlength > 128 || isNaN(pwlength)) {
+  if (pwLength < 8 || pwLength > 128 || isNaN(pwLength)) {
     alert("Please choose a number between 8 and 128.");
-    pwlength = parseInt(prompt('How many chars?'));
+    pwLength = parseInt(prompt('How many chars?'));
   }
 
   // Prompts user to decide whether or not to include different character types
@@ -68,7 +68,7 @@ function generatePassword() {
   // For-loop to choose random characters of each type to add to the password
   
   if (pwLowercase === true) {
-    var lowerCount = pwlength / typeCount;
+    var lowerCount = pwLength / typeCount;
     for (var i = 0; i < lowerCount; i++) {
       var randomIndex = Math.floor(Math.random() * lowercaseChars.length);
       var randomLowercase = lowercaseChars[randomIndex];
@@ -77,7 +77,7 @@ function generatePassword() {
   }
   
   if (pwUppercase === true) {
-    var UpperCount = pwlength / typeCount;
+    var UpperCount = pwLength / typeCount;
     for (var i = 0; i < UpperCount; i++) {
       var randomIndex = Math.floor(Math.random() * uppercaseChars.length);
       var randomUppercase = uppercaseChars[randomIndex];
@@ -86,7 +86,7 @@ function generatePassword() {
   }
   
   if (pwNumeric === true) {
-    var numericCount = pwlength / typeCount;
+    var numericCount = pwLength / typeCount;
     for (var i = 0; i < numericCount; i++) {
       var randomIndex = Math.floor(Math.random() * numericChars.length);
       var randomNumeric = numericChars[randomIndex];
@@ -95,20 +95,31 @@ function generatePassword() {
   }
   
   if (pwSpecial === true) {
-    var specialCount = pwlength / typeCount;
+    var specialCount = pwLength / typeCount;
     for (var i = 0; i < specialCount; i++) {
       var randomIndex = Math.floor(Math.random() * specialChars.length);
       var randomSpecial = specialChars[randomIndex];
       myPassword = myPassword + randomSpecial;
     }
   }
+  
+// Defines "shortenPassword" function
+  function shortenPassword() {
+    originalPassword = myPassword;
+    shortenedPassword = originalPassword.slice((myPassword.length - pwLength));
+  }
 
-  console.log(typeCount)
+// Calls "shortenPassword" function & redfines "myPassword" variable if password is too long
 
+  if (myPassword.length > pwLength) {
+    shortenPassword();
+    myPassword = shortenedPassword;
+  }
+    
 // Returns value of "myPassword" so it can be fed into "writePassword" function
 
   return myPassword;
-  
+
 }
 
 // Add event listener to generate button
