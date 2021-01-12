@@ -9,9 +9,11 @@ function writePassword() {
   passwordText.value = password;
 }
 
+// Defines the "generatePassword" function
+
 function generatePassword() {
 
-// Arrays for different sets of characters
+  // Arrays for different sets of characters
 
   var lowercaseChars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
@@ -21,9 +23,13 @@ function generatePassword() {
 
   var specialChars = ["~","!","#","$","%","^","&","*","(",")","_","-","+","=","`","<",",",">",".","?","/","{","}","[","]","|"];
 
-// -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+  // -----------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  // Creates "myPassword" variable (blank for now)
 
   var myPassword = ""
+
+  // Prompts user to choose length of password; re-prompts them if they choose too few or too many characters
 
   var pwlength = parseInt(prompt('How many chars?'));
 
@@ -31,6 +37,8 @@ function generatePassword() {
     alert("Please choose a number between 8 and 128.");
     pwlength = parseInt(prompt('How many chars?'));
   }
+
+  // Prompts user to decide whether or not to include different character types
 
   var pwLowercase = confirm("Include lowercase characters?");
 
@@ -42,10 +50,14 @@ function generatePassword() {
   var pwNumeric = confirm("Include numbers?");
   var pwSpecial = confirm("Include special characters?");
 
+  // Makes user go back if they don't select any of the 4 character types
+
   if (pwLowercase === false && pwUppercase === false && pwNumeric === false && pwSpecial === false) {
     alert("Please choose at least character type.");
     return generatePassword();
   }
+
+  // For-loop to choose random special characters to add to the password
 
   for (var i = 0; i < pwlength; i++) {
     var randomIndex = Math.floor(Math.random() * specialChars.length);
@@ -58,6 +70,8 @@ function generatePassword() {
   //   var randomLowercase = lowercaseChars[randomIndex];
   //   myPassword = myPassword + randomLowercase;
   // }
+
+// Returns value of "myPassword" so it can be fed into "writePassword" function
 
   return myPassword;
 }
