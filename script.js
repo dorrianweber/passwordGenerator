@@ -20,7 +20,7 @@ function generatePassword() {
   var numericChars = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
   var specialChars = ["~","!","#","$","%","^","&","*","(",")","_","-","+","=","`","<",",",">",".","?","/","{","}","[","]","|"];
   
-  // Creates "myPassword" variable (blank for now)
+  // Creates "myPassword" variable
 
   var myPassword = ""
 
@@ -48,11 +48,28 @@ function generatePassword() {
     return generatePassword();
   }
 
+  // Setting a variable for how many types of characters the user has selected to use in their password
+
+  if (pwLowercase === true) {
+    typeCount ++;
+  }
+
+  if (pwUppercase === true) {
+    typeCount ++;
+  }
+
+  if (pwNumeric === true) {
+    typeCount ++;
+  }
+
+  if (pwSpecial === true) {
+    typeCount ++;
+  }
   // For-loop to choose random characters of each type to add to the password
   
   if (pwLowercase === true) {
-    typeCount ++;
-    for (var i = 0; i < pwlength; i++) {
+    var lowerCount = pwlength / typeCount;
+    for (var i = 0; i < lowerCount; i++) {
       var randomIndex = Math.floor(Math.random() * lowercaseChars.length);
       var randomLowercase = lowercaseChars[randomIndex];
       myPassword = myPassword + randomLowercase;
@@ -60,8 +77,8 @@ function generatePassword() {
   }
   
   if (pwUppercase === true) {
-    typeCount ++;
-    for (var i = 0; i < pwlength; i++) {
+    var UpperCount = pwlength / typeCount;
+    for (var i = 0; i < UpperCount; i++) {
       var randomIndex = Math.floor(Math.random() * uppercaseChars.length);
       var randomUppercase = uppercaseChars[randomIndex];
       myPassword = myPassword + randomUppercase;
@@ -69,8 +86,8 @@ function generatePassword() {
   }
   
   if (pwNumeric === true) {
-    typeCount ++;
-    for (var i = 0; i < pwlength; i++) {
+    var numericCount = pwlength / typeCount;
+    for (var i = 0; i < numericCount; i++) {
       var randomIndex = Math.floor(Math.random() * numericChars.length);
       var randomNumeric = numericChars[randomIndex];
       myPassword = myPassword + randomNumeric;
@@ -78,8 +95,8 @@ function generatePassword() {
   }
   
   if (pwSpecial === true) {
-    typeCount ++;
-    for (var i = 0; i < pwlength; i++) {
+    var specialCount = pwlength / typeCount;
+    for (var i = 0; i < specialCount; i++) {
       var randomIndex = Math.floor(Math.random() * specialChars.length);
       var randomSpecial = specialChars[randomIndex];
       myPassword = myPassword + randomSpecial;
@@ -88,27 +105,10 @@ function generatePassword() {
 
   console.log(typeCount)
 
-  // Creating a variable for how many types of characters the user has selected to use in their password
-
-  if (pwLowercase === true) {
-    var lowerCount = pwlength / typeCount
-  }
-
-  if (pwUppercase === true) {
-    var UpperCount = pwlength / typeCount
-  }
-
-  if (pwNumeric === true) {
-    var numericCount = pwlength / typeCount
-  }
-
-  if (pwSpecial === true) {
-    var specialCount = pwlength / typeCount
-  }
-
 // Returns value of "myPassword" so it can be fed into "writePassword" function
 
   return myPassword;
+  
 }
 
 // Add event listener to generate button
